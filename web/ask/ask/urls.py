@@ -26,6 +26,6 @@ urlpatterns = [
 #    url(r'^popular/', views.test),
     url(r'^new/', views.test),
     url(r'^popular/', views.test3),
-    url(r'/question/(?P<slug>\d+)/', views.test4),
+    url(r'^question/\d+/$', views.test4),
     url(r'/(?P<page>\d+)', views.test2),
 ]

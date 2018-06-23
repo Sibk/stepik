@@ -2,6 +2,7 @@ from django.shortcuts import render, HttpResponse
 from qa.models import Question, Answer
 from django.core.paginator import Paginator
 from django.http import Http404
+import re
 # Create your views here.
 
 def test(request, *args, **kwargs):
@@ -27,15 +28,16 @@ def test3(request):
 	return render(request, 'test2.html', html)
 
 
-def test4(request, page):
+def test4(request):
 	html ={}
+	page = request.GET.get('page', 1)
+	page = re.findall(r'\d+', request.path)[0]
 	try:
 		res = Question.objects.get(id = page)
 		ss = Answer.objects.filter(question = res)
+		html['qst'] = res
+		html['ans'] = ss
+		return render(request, 'test3.html', html)
 	except Question.DoesNotExist:
 		raise Http404
-		
-	html['qst'] = res
-	html['ans'] = ss
-	return render(request, 'test3.html', html)
 	

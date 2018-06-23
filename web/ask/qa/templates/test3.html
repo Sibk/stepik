@@ -1,9 +1,7 @@
 <html>
-{% for q in qst %}
-	<p>{{ q.title }}</p>
-	<p>{{ q.text }}
+	<h1>{{ qst.title }}</h1>
+	<p>{{ qst.text }}
 	{% for a in ans %}
 		<p>{{ a.text }}</p>
 	{% endfor %}
-{% endfor %}
 </html>
