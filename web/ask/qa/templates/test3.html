@@ -1,3 +1,9 @@
 <html>
-
+{% for q in qst %}
+	<p>{{ q.title }}</p>
+	<p>{{ q.text }}
+	{% for a in ans %}
+		<p>{{ a.text }}</p>
+	{% endfor %}
+{% endfor %}
 </html>

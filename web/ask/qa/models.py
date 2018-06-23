@@ -11,7 +11,7 @@ class QuestionManager(models.Manager):
 		return super(QuestionManager, self).popular().all().order_by('-rating')
 		
 class Question(models.Model):
-	objects = QuestionManager()
+#	objects = QuestionManager()
 	title = models.CharField(max_length = 100)
 	text = models.TextField()
 	added_at = models.DateTimeField(auto_now_add=True)

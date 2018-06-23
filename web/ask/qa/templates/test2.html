@@ -1,7 +1,10 @@
 <html>
+{% for ss in cont %}
+	<p>{{ss.title}} <a href="/question/{{ss.id}}/">{{ss.title}}</a></p>
+{% endfor %}
 
 {% if cont.has_previous %}
-	<a href = "/?page={{cont.previous_page_number}}">previous</a>
+	<a href = "?page={{cont.previous_page_number}}">previous</a>
 {% else %}
 	<a href = "#">previous</a>
 {% endif %}
