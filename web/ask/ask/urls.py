@@ -1,3 +1,4 @@
+
 """ask URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -20,11 +21,11 @@ urlpatterns = [
     url(r'^$(?P<page>)', views.test2),
     url(r'^login/', views.test),
     url(r'^signup/', views.test),
-    url(r'^question/\d+/', views.test),
+#    url(r'^question/\d+/', views.test),
     url(r'^ask/', views.test),
-    url(r'^popular/', views.test),
+#    url(r'^popular/', views.test),
     url(r'^new/', views.test),
-    url(r'/popular/(?P<page>\d+)', views.test3),
+    url(r'^popular/', views.test3),
     url(r'/question/(?P<slug>\d+)/', views.test4),
     url(r'/(?P<page>\d+)', views.test2),
 ]

@@ -3,12 +3,12 @@ from __future__ import unicode_literals
 from django.db import models
 from django.contrib.auth.models import User
 # Create your models here.
-class QuestionManager(models.Manager):
-	def new(self):
-		return super(QuestionManager, self).new().all().order_by('-id')
+#class QuestionManager(models.Manager):
+#	def new(self):
+#		return super(QuestionManager, self).new().all().order_by('-id')
 		
-	def popular(self):
-		return super(QuestionManager, self).popular().all().order_by('-rating')
+#	def popular(self):
+#		return super(QuestionManager, self).popular().all().order_by('-rating')
 		
 class Question(models.Model):
 #	objects = QuestionManager()

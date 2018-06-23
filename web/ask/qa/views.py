@@ -17,7 +17,7 @@ def test2(request, page):
 	return render(request, 'test2.html', html)
 
 
-def test3(request, page):
+def test3(request):
 	html = {}
 	page = request.GET.get('page', 1)
 	res = Question.objects.all().order_by('-rating')
@@ -34,6 +34,7 @@ def test4(request, page):
 		ss = Answer.objects.filter(question = res)
 	except Question.DoesNotExist:
 		raise Http404
+		
 	html['qst'] = res
 	html['ans'] = ss
 	return render(request, 'test3.html', html)
