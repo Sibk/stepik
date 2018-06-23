@@ -1,0 +1,12 @@
+<html>
+
+{% if cont.has_previous %}
+	<a href = "/?page={{cont.previous_page_number}}">previous</a>
+{% else %}
+	<a href = "#">previous</a>
+{% endif %}
+{% if cont.has_next %}
+	<a href="?page={{cont.next_page_number}}">{{cont.next_page_number}}</a>
+{% endif %}
+<a href="?page={{cont.paginator.count}}">last</a>
+</html>

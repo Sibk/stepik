@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 class QuestionManager(models.Manager):
 	def new(self):
-		return super(QuestionManager, self).new().filter(Max(added_at))
+		return super(QuestionManager, self).new().all().order_by('-id')
 		
 	def popular(self):
 		return super(QuestionManager, self).popular().all().order_by('-rating')
