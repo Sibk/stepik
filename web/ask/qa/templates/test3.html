@@ -4,4 +4,9 @@
 	{% for a in ans %}
 		<p>{{ a.text }}</p>
 	{% endfor %}
+	<form method="post">
+		{% csrf_token %}
+		{{ form }}
+		<button type="submite">add</button>
+	</form>
 </html>
