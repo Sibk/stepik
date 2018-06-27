@@ -1,0 +1,12 @@
+cd /home/box/stepik
+rm -R web/
+cd /home/box
+cp -R web/ stepik/
+cd /home/box/stepik
+git init
+git add web/
+git config --global user.name 'Sibk'
+git config --global user.email 'siberuys2012@gmail.com'
+git commit -m 'django123'
+git remote add origin https://github.com/Sibk/stepik
+git push -u origin master
