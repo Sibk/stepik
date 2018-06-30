@@ -1,5 +1,7 @@
 from django import forms
 from qa import models
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.models import User
 
 class AskForm(forms.Form):
 	title = forms.CharField(max_length = 100)
@@ -11,10 +13,10 @@ class AskForm(forms.Form):
 			raise ValidationError('error, title is null')
 		return title
 
-	def save(self):
+	def save(self, request):
 		title = self.cleaned_data['title']
 		text = self.cleaned_data['text']
-		post = models.Question(title = title, text = text)
+		post = models.Question(title = title, text = text, author = request.user)
 		post.save()
 		return post
 
@@ -34,8 +36,27 @@ class AnswerForm(forms.Form):
 			raise ValidationError('error int question')
 		return text, question
 	
-	def save(self):
+	def save(self, request):
 		text = self.cleaned_data['text']
 		question = self.cleaned_data['question']
-		post = models.Answer(text = text, question_id = question)
+		post = models.Answer(text = text, question_id = question, author = request.user)
 		return post		
+
+class RegistrationForm(UserCreationForm):
+	username = forms.CharField()
+	password1 = forms.CharField()
+	email = forms.EmailField()
+
+	class Meta:
+		model = User
+		fields = ('username', 'password1', 'email')
+
+	def save(self, commit = True):
+		user = super(RegistrationForm, self).save(commit = False)
+		if(commit):
+			user.save()
+		return user
+
+class UserLoginForm(AuthenticationForm):
+	username = forms.CharField()
+	password = forms.CharField()	
