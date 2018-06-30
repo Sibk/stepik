@@ -11,9 +11,9 @@ def test(request, *args, **kwargs):
 	if(request.method == 'POST'):
 		form = AskForm(data = request.POST)
 		if(form.is_valid()):
-			form.save()
+			tt = form.save()
 			html['form'] = form
-			return redirect('/question/123/')
+			return redirect('/question/{}/'.format(tt.id))
 	else:
 		html['form'] = AskForm()
 	return render(request, 'ask.html', html)
@@ -58,4 +58,4 @@ def test4(request):
 			return render(request, 'test3.html', html)
 		except Question.DoesNotExist:
 			raise Http404
-	
+	return HttpResponse('OK')
