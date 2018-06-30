@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, redirect
 from qa.models import Question, Answer
 from django.core.paginator import Paginator
 from django.http import Http404
@@ -13,6 +13,7 @@ def test(request, *args, **kwargs):
 		if(form.is_valid()):
 			form.save()
 			html['form'] = form
+			return redirect('/question/123/')
 	else:
 		html['form'] = AskForm()
 	return render(request, 'ask.html', html)
@@ -46,7 +47,7 @@ def test4(request):
 		if(form.is_valid()):
 			form.save()
 			html['form'] = form
-			return HttpResponseRedirect('/question/{}/'.form(page))		
+			return redirect('/question/{}/'.format(page))		
 	else:
 		try:
 			res = Question.objects.get(id = page)
